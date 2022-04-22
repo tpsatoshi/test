@@ -26,7 +26,6 @@
       }
       var url = "https://api.ethplorer.io/" + "getTxInfo/"  + value + "?apiKey=EK-bqwA4-T8wB3SE-uUj9N";
       xmlhttp.open("GET", url);
-      request.responseType = 'json';
       xmlhttp.send();
       
       request.onload = function() {
