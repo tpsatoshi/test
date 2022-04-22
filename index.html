@@ -20,10 +20,11 @@
       xmlhttp.open("GET", url);
       xmlhttp.send();
       
-      request.oncall = function() {
-        const rowdata = request.response;
-        datafrom(rowdata);
-      }
+         request.onload = function() {
+         const rowdata = request.response;
+         datafrom(rowdata);
+         }
+      
       
       function datafrom(obj) {
         const myH1 = document.createElement('h1');
@@ -48,6 +49,9 @@
 
   トランザクション番号:<input id="text1" type="text" /><br />
   <button onclick="onButtonClick()">確認</button><br/>
-  結果:
+  結果:<br/>
+  From:<div console.log(myH1)></div><br/>
+  To:<div id=myH2></div><br/>
+  Amount:<div id="output"></div><br/>
 </body>
 </html>
