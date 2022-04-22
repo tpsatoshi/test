@@ -15,29 +15,28 @@
       var xmlhttp = new XMLHttpRequest();
 
       xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4) {
+          if (xmlhttp.status == 200) {
+            var elem = xmlhttp.response;
+          } else {
+            alert("status = " + xmlhttp.status);
+          }
+        }
       }
-      var url = "https://api.ethplorer.io/" + "getTxInfo/"  + value + "?apiKey=EK-bqwA4-T8wB3SE-uUj9N";
+      var url = "https://api.ethplorer.io/" + "getTokenInfo/" + value + "?apiKey=EK-bqwA4-T8wB3SE-uUj9N";
       xmlhttp.open("GET", url);
       xmlhttp.send();
+      }
       
-         request.onload = function() {
-         const rowdata = request.response;
-         datafrom(rowdata);
-         }
-      
-      
-      function datafrom(obj) {
+      function elem(obj) {
         const myH1 = document.createElement('h1');
         myH1.textContent = obj['from'];
-        console.log(myH1);
         
         const myH2 = document.createElement('h2');
         myH2.textContent = obj['to'];
-        console.log(myH2);
 
         const myH3 = document.createElement('h3');
         myH3.textContent = obj['value'];
-        console.log(myH3);
       }
 
         
@@ -51,7 +50,7 @@
   <button onclick="onButtonClick()">確認</button><br/>
   結果:<br/>
   From:<div console.log(myH1)></div><br/>
-  To:<div id=myH2></div><br/>
-  Amount:<div id="output"></div><br/>
+  To:<div console.log(myH2)></div><br/>
+  Amount:<div console.log(myH3)></div><br/>
 </body>
 </html>
