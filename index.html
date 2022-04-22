@@ -17,7 +17,8 @@
       xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4) {
           if (xmlhttp.status == 200) {
-            var elem = xmlhttp.response;
+            var elem = document.getElementById("output");
+            elem = xmlhttp.response;
           } else {
             alert("status = " + xmlhttp.status);
           }
@@ -27,35 +28,13 @@
       xmlhttp.open("GET", url);
       xmlhttp.send();
     }
-
-      request.onload = function() {
-        const elme = request.response;
-        rowdata(elme);
-
-        function rowdata(obj) {
-        const myH1 = document.createElement('h1');
-        myH1.textContent = obj['from'];
-
-        const myH2 = document.createElement('h2');
-        myH2.textContent = obj['to'];
-
-        const myH3 = document.createElement('h3');
-        myH3.textContent = obj['value'];
-
-
-    }
-
-
-</script>
+  </script>
 </head>
 <body>
   <h2>トランザクション内容の確認</h2>
 
-  トランザクション番号:<input id="text1" type="text" /><br/>
+  トランザクション番号:<input id="text1" type="text" /><br />
   <button onclick="onButtonClick()">確認</button><br/>
-  結果:<br/>
-  From:<div id='from'></div>
-  To:<div id='to'></div>
-  Amount:<div id='value'></div><br/>
+  結果:<div id="output"></div>
 </body>
 </html>
