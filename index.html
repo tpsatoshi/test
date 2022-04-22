@@ -20,7 +20,7 @@
       xmlhttp.open("GET", url);
       xmlhttp.send();
       
-      request.onload = function() {
+      request.oncall = function() {
         const rowdata = request.response;
         datafrom(rowdata);
       }
@@ -48,6 +48,6 @@
 
   トランザクション番号:<input id="text1" type="text" /><br />
   <button onclick="onButtonClick()">確認</button><br/>
-  結果:<div id="output"></div>
+  結果:
 </body>
 </html>
