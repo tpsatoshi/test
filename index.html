@@ -17,8 +17,28 @@
       xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4) {
           if (xmlhttp.status == 200) {
-            var elem = xmlhttp.response;
-            rowdata(elem);
+            const elem = xmlhttp.response;
+            console.log(elem);
+            const json = JSON.parse(elem);
+            console.log(json);
+            console.log(json.from);
+            console.log(json.to);
+            console.log(json.value);
+            const from = json.from;
+            const to = json.to;
+            const value = json.value;
+            console.log(from);
+            console.log(to);
+            console.log(value);
+            var ele1 = document.getElementById("output1");
+            ele1.innerText = from;
+            var ele2 = document.getElementById("output2");
+            ele2.innerText = to;
+            var ele3 = document.getElementById("output3");
+            ele3.innerText = value;
+
+
+
           } else {
             alert("status = " + xmlhttp.status);
           }
@@ -29,30 +49,16 @@
       xmlhttp.send();
     }
 
-    function rowdata(obj) {
-        const myH1 = document.createElement('h1');
-        myH1.textContent = obj['from'];
-
-        const myH2 = document.createElement('h2');
-        myH2.textContent = obj['to'];
-
-        const myH3 = document.createElement('h3');
-        myH3.textContent = obj['value'];
-
-
-    }
-
-
 </script>
 </head>
 <body>
   <h2>トランザクション内容の確認</h2>
 
-  トランザクション番号:<input id="text1" type="text"/><br/>
-  <button onclick="onButtonClick()">確認</button><br\/>
-  結果:<br/>
-  From:<div id='h1'></div>
-  To:<div id='h2'></div>
-  Amount:<div id='h3'></div>
+  トランザクション番号:<input id="text1" type="text" /><br />
+  <button onclick="onButtonClick()">確認</button><br />
+  結果:<br />
+  From:<div id="output1"></div>
+  To:<div id="output2"></div>
+  Amount:<div id="output3"></div><br />
 </body>
 </html>
