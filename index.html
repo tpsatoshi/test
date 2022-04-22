@@ -1,15 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My JPYC app</title>
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
-        type="application/javascript"></script>
-    <script src="index.js"></script>
+  <meta charset="utf-8" />
+  <title>トランザクション履歴の確認</title>
+
+  <script type="text/javascript">
+
+    function onButtonClick() {
+      var str1 = document.getElementById("text1").value;
+      callAdd(str1);
+    }
+
+    function callAdd(value) {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4) {
+          if (xmlhttp.status == 200) {
+            var elem = document.getElementById("output");
+            elem.innerText = xmlhttp.response;
+          } else {
+            alert("status = " + xmlhttp.status);
+          }
+        }
+      }
+      var url = "https://api.ethplorer.io/" + "getTxInfo/"  + value + "?apiKey=EK-bqwA4-T8wB3SE-uUj9N";
+      xmlhttp.open("GET", url);
+      request.responseType = 'json';
+      xmlhttp.send();
+      
+      request.onload = function() {
+        const rowdata = request.response;
+        datafrom(rowdata);
+      }
+      
+      function datafromprint(obj) {
+        const myH1 = document.createElement('h1');
+        myH1.textContent = obj['from'];
+        console.log(myH1);
+        
+        const myH2 = document.createElement('h2');
+        myH2.textContent = obj['to'];
+        console.log(myH2);
+
+        const myH3 = document.createElement('h3');
+        myH3.textContent = obj['value'];
+        console.log(myH3);
+      }
+
+        
+    }
+  </script>
 </head>
 <body>
-    <h1>This is JPYC</h1>
+  <h2>トランザクション内容の確認</h2>
+
+  トランザクション番号:<input id="text1" type="text" /><br />
+  <button onclick="onButtonClick()">確認</button><br/>
+  結果:<div id="output"></div>
 </body>
 </html>
+
